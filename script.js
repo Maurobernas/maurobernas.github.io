@@ -22,6 +22,13 @@ function setLanguage(language) {
     element.setAttribute('aria-label', language === 'en' ? element.dataset.enLabel : element.dataset.esLabel);
   });
 
+  document.querySelectorAll('[data-en-src][data-es-src]').forEach((element) => {
+    element.src = element.dataset[`${language}Src`];
+  });
+  document.querySelectorAll('[data-en-alt][data-es-alt]').forEach((element) => {
+    element.alt = element.dataset[`${language}Alt`];
+  });
+
   document.querySelectorAll('[data-en][data-es]').forEach((element) => {
     const value = element.dataset[language];
     const richValue = element.dataset[`${language}Html`];

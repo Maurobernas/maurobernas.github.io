@@ -165,3 +165,45 @@
 @media(max-width:460px){.reskin-feature{grid-template-columns:82px minmax(0,1fr);gap:14px;padding:18px}.reskin-feature-art img{width:82px}.reskin-feature-copy h3{font-size:21px}.reskin-feature-copy>p:not(.eyebrow){font-size:13px}.reskin-feature .button-secondary{gap:12px;padding:12px;font-size:12px}}
 @media(min-width:901px){.reskin-feature{padding-right:14px}}
 .reskin-details-link{display:inline-block;margin-top:13px;font-weight:600}
+
+/* Official store badges below project contributions */
+.store-links{padding:34px 0 48px;background:#101317;border-bottom:1px solid #20252a}
+.store-links-title{margin:0 0 18px;text-align:center;color:#8c9caf;font:11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.store-badges{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:18px 24px}
+.store-badge{display:inline-flex;align-items:center;justify-content:center;max-width:none;transition:transform .18s ease,opacity .18s ease}
+.store-badge-google img{display:block;width:min(190px,46vw);height:auto}
+.store-badge-appstore img{display:block;width:min(170px,40vw);height:auto}
+.store-badge:hover{transform:translateY(-2px);opacity:.9}
+.store-badge:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:4px}
+@media(max-width:760px){.store-links{padding:28px 0 38px}.store-badges{gap:12px}.store-badge-google img{width:min(170px,43vw)}.store-badge-appstore img{width:min(152px,38.5vw)}}
+.template-details{border-bottom:0}
+
+/* Turi project contribution accordions */
+.turi-contributions .case-section-heading,.project-contributions .case-section-heading{margin-bottom:34px}
+.contribution-accordions{width:min(100%,900px);margin:0 auto;border-top:1px solid #303a45}
+.contribution-item{border-bottom:1px solid #303a45}
+.contribution-item summary{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px;padding:18px 48px 18px 4px;list-style:none;cursor:pointer;color:#e8edf3;font-size:clamp(19px,2.2vw,24px);font-weight:600;line-height:1.3;transition:color .18s ease}
+.contribution-item summary::-webkit-details-marker{display:none}
+.contribution-item summary::marker{content:""}
+.contribution-item summary::after{content:"+";position:absolute;right:5px;top:50%;transform:translateY(-50%);color:var(--accent);font:26px/1 var(--mono);font-weight:400}
+.contribution-item[open] > summary::after{content:"−"}
+.contribution-item summary:hover,.contribution-item summary:focus-visible{color:var(--accent)}
+.contribution-item summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.contribution-content{padding:0 48px 25px 4px;color:#b9c3ce;font-size:16px;line-height:1.8;animation:contribution-reveal .18s ease-out}
+.contribution-content h3{margin:0 0 10px;color:#e5ebf1;font-size:17px;font-weight:600}
+.contribution-content ul{margin:0;padding-left:22px}
+.contribution-content li+li{margin-top:5px}
+.contribution-pending{margin:0;color:#9eabb8;font-style:italic}
+.contribution-nested{margin:2px 0}
+.contribution-nested summary{position:static;display:inline;min-height:0;padding:0;list-style:none;color:inherit;font:inherit;line-height:inherit;cursor:pointer;transition:color .18s ease}
+.contribution-nested summary:hover,.contribution-nested summary:focus-visible{color:inherit}
+.contribution-nested summary::after{position:static;display:inline;right:auto;top:auto;transform:none;margin-left:5px;color:var(--accent);font:inherit;content:"(+)"}
+.contribution-nested[open] summary::after{content:"(−)"}
+.contribution-nested[open] summary{margin-bottom:0}
+.contribution-nested ul{padding-left:22px}
+@keyframes contribution-reveal{from{opacity:.5;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){.contribution-item summary{min-height:68px;padding-right:40px}.contribution-content{padding:0 38px 22px 4px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.contribution-item summary,.contribution-content{transition:none;animation:none}}
+
+/* Justify longer descriptive copy in the NDA, experience, and Turi sections */
+.reskin-feature-copy>p:not(.eyebrow),.experience-detail>ul li,.turi-contributions .contribution-content li,.project-contributions .contribution-content li{text-align:justify;text-justify:inter-word;-webkit-hyphens:none;hyphens:none}
