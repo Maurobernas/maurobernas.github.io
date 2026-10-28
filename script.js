@@ -114,22 +114,36 @@ document.querySelectorAll('.project-gallery').forEach((gallery) => {
   const previous = gallery.querySelector('[data-gallery-prev]');
   const next = gallery.querySelector('[data-gallery-next]');
   const counter = gallery.querySelector('.gallery-count');
-  if (!viewport || slides.length < 2 || !controls || !previous || !next) return;
+  const thumbnails = [...gallery.querySelectorAll('[data-gallery-goto]')];
+  const hasArrowControls = Boolean(controls && previous && next);
+  if (!viewport || slides.length < 2 || (!hasArrowControls && thumbnails.length < 2)) return;
 
-  controls.hidden = false;
+  if (hasArrowControls) controls.hidden = false;
   const formatCount = (index) => `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+  const selectThumbnail = (index) => {
+    thumbnails.forEach((thumbnail, thumbnailIndex) => {
+      const isSelected = thumbnailIndex === index;
+      thumbnail.classList.toggle('is-active', isSelected);
+      thumbnail.setAttribute('aria-pressed', String(isSelected));
+    });
+  };
   let currentIndex = 0;
   if (counter) counter.textContent = formatCount(currentIndex);
+  selectThumbnail(currentIndex);
   const goTo = (index) => {
     const safeIndex = (index + slides.length) % slides.length;
     currentIndex = safeIndex;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     viewport.scrollTo({ left: slides[safeIndex].offsetLeft - slides[0].offsetLeft, behavior: reducedMotion ? 'auto' : 'smooth' });
     if (counter) counter.textContent = formatCount(safeIndex);
+    selectThumbnail(safeIndex);
   };
 
-  previous.addEventListener('click', () => goTo(currentIndex - 1));
-  next.addEventListener('click', () => goTo(currentIndex + 1));
+  if (hasArrowControls) {
+    previous.addEventListener('click', () => goTo(currentIndex - 1));
+    next.addEventListener('click', () => goTo(currentIndex + 1));
+  }
+  thumbnails.forEach((thumbnail, index) => thumbnail.addEventListener('click', () => goTo(index)));
   viewport.addEventListener('scroll', () => {
     const nearestIndex = slides.reduce((closest, slide, index) => {
       const currentDistance = Math.abs(slide.offsetLeft - slides[0].offsetLeft - viewport.scrollLeft);
@@ -138,5 +152,6 @@ document.querySelectorAll('.project-gallery').forEach((gallery) => {
     }, 0);
     currentIndex = nearestIndex;
     if (counter) counter.textContent = formatCount(nearestIndex);
+    selectThumbnail(nearestIndex);
   }, { passive: true });
 });
