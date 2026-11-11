@@ -18,7 +18,6 @@ In the repository settings, enable GitHub Pages for the branch and folder contai
 - The project templates include a media gallery at the bottom. Keep one `<figure class="gallery-slide">` per image or YouTube embed; the carousel arrows appear automatically when the gallery contains more than one item. Use an `<img src="./assets/your-image.webp" alt="Describe the image">` for a still image, or a YouTube `<iframe>` for a video.
 - The case study avoids original project screenshots because the work is under NDA. Keep the company showcase video and NDA wording within the permissions that apply to the project.
 - Add screenshots or gameplay clips only to projects where you have permission to show them. For images, use compressed WebP or AVIF files with descriptive `alt` text.
-- The supplied CV is included at `assets/Mauro_Bernasconi_AI_Readable_CV.pdf` and linked from the contact section.
 - The `data-en` and `data-es` attributes provide the English and Spanish versions of page copy. The header button switches languages and includes a small flag for the destination language.
 
 Fonts use local system fallbacks, so there are no third-party runtime requests.
